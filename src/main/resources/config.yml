@@ -1,0 +1,110 @@
+# for debugging: sends player a message when his tool stats get updated
+debug: false
+toolstats-command:
+  no-permissions: "&c✘ &7You don't have permission to use this command."
+  usage: "&3➽ &6/toolstats remove <statName> &8» &7remove &fspecified stat&7 from your tool\n   &6/toolstats clear &8» &7completely remove &fall &7tool stats"
+  invalid-tool: "&c✘ &7Unsupported item type!"
+  remove:
+    usage: "&3➽ &7To remove a single tool stat use &6/toolstats remove <statName>&7."
+    success: "&a✔ &7Cleared entry &f%stat% &7of your tool."
+    stat-not-found: "&c✘ &7Your tool has no stat &f%stat%&7."
+  clear:
+    usage: "&3➽ &7You're about to clear all stats from your current held item. Confirm with &6/toolstats clear yes&7."
+    success: "&a✔ &7Cleared stats of your tool."
+    # second parameter to confirm removal of tool stats: /toolstats clear <confirmationWord>
+    confirm-with: "yes"
+    no-stats: "&c✘ &7Your tool has no stats."
+tracking:
+  color:
+    # <triggerColor>Stone<ColonColor>: <counterColor>42
+    trigger: "&7"
+    colon: "&8"
+    counter: "&6"
+  # tools
+  PICKAXE:
+    enabled: true
+    first-line: "&3Blocks mined"
+    trigger:
+      - STONE
+      - COBBLESTONE
+      - COAL_ORE
+      - IRON_ORE
+      - GOLD_ORE
+      - DIAMOND_ORE
+      - EMERALD_ORE
+      - REDSTONE_ORE
+      - LAPIS_ORE
+      - QUARTZ_ORE
+      - miscellaneous
+  AXE:
+    enabled: true
+    first-line: "&3Blocks chopped"
+    trigger:
+      - LOG
+      - LOG_2
+      - miscellaneous
+  SPADE:
+    enabled: true
+    first-line: "&3Blocks dug"
+    trigger:
+      - DIRT
+      - GRASS
+      - FARMLAND
+      - MYCEL
+      - GRAVEL
+      - SAND
+      - CLAY
+      - miscellaneous
+  HOE:
+    enabled: true
+    first-line: "&3Blocks hoed"
+  FISHING_ROD:
+    enabled: true
+    first-line: "&3Items fished"
+    trigger:
+      - FISH
+      - TREASURE
+      - JUNK
+  FLINT_AND_STEEL:
+    first-line: "&3Blocks ignited"
+    enabled: true
+  SHEARS:
+    first-line: "&3Things sheared"
+    enabled: true
+    trigger:
+      - LEAVES
+      - LEAVES_2
+      - WEB
+      - SHEEP
+  # weapons
+  SWORD:
+    enabled: true
+    first-line: "&3Kills"
+    trigger:
+      - ZOMBIE
+      - SKELETON
+      - CREEPER
+      - SPIDER
+      - ENDERMAN
+      - PIG_ZOMBIE
+      - GHAST
+      - WITHER_SKELETON
+      - hostile
+      - passive
+      - players
+  BOW:
+    enabled: true
+    first-line: "&3Kills"
+    trigger:
+      - ZOMBIE
+      - SKELETON
+      - CREEPER
+      - SPIDER
+      - PIG_ZOMBIE
+      - GHAST
+      - hostile
+      - passive
+      - players
+  SHIELD:
+    enabled: true
+    first-line: "&3Attacks blocked"

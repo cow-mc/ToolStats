@@ -1,0 +1,61 @@
+name: ${project.name}
+version: ${project.version}
+main: farm.the.toolstats.ToolStats
+author: Cow
+description: ${project.description}
+commands:
+  toolstats:
+    description: Clear all or one stat of a tool.
+    usage: /<command> <remove|clear>
+permissions:
+  toolstats.*:
+    description: Gives access to all ToolStats permissions
+    children:
+      toolstats.command.remove: true
+      toolstats.command.clear: true
+      toolstats.track.pickaxe: true
+      toolstats.track.axe: true
+      toolstats.track.spade: true
+      toolstats.track.hoe: true
+      toolstats.track.fishing_rod: true
+      toolstats.track.flint_and_steel: true
+      toolstats.track.shears: true
+      toolstats.track.sword: true
+      toolstats.track.bow: true
+      toolstats.track.shield: true
+  toolstats.command.remove:
+    description: Allows usage of command to remove a single stat of a tool
+    default: true
+  toolstats.command.clear:
+    description: Allows usage of command to remove all tool stats
+    default: true
+  toolstats.track.pickaxe:
+    description: Enables pickaxe tracking for player
+    default: true
+  toolstats.track.axe:
+    description: Enables axe tracking for player
+    default: true
+  toolstats.track.spade:
+    description: Enables spade tracking for player
+    default: true
+  toolstats.track.hoe:
+    description: Enables hoe tracking for player
+    default: true
+  toolstats.track.fishing_rod:
+    description: Enables fishing rod tracking for player
+    default: true
+  toolstats.track.flint_and_steel:
+    description: Enables flint and steel tracking for player
+    default: true
+  toolstats.track.shears:
+    description: Enables shears tracking for player
+    default: true
+  toolstats.track.sword:
+    description: Enables sword tracking for player
+    default: true
+  toolstats.track.bow:
+    description: Enables bow tracking for player
+    default: true
+  toolstats.track.shield:
+    description: Enables shield tracking for player
+    default: true
