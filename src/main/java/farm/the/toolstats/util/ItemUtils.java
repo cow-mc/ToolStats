@@ -7,7 +7,6 @@ import org.bukkit.Material;
 import org.bukkit.entity.*;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
@@ -17,31 +16,6 @@ import java.util.Map;
 import java.util.logging.Level;
 
 public class ItemUtils {
-    /**
-     * Tries to find an item of type 'toolType' in player's main or offhand.
-     *
-     * @param inventory player inventory
-     * @param toolType  tool type that should be looked for
-     * @return used item if found, otherwise null
-     */
-    public static ItemStack getUsedItem(PlayerInventory inventory, ToolType toolType) {
-        ItemStack usedItem = inventory.getItemInMainHand();
-        if (ToolType.getByMaterial(usedItem.getType()) == toolType) {
-            // toolType found in main hand
-            return usedItem;
-        }
-
-        if (toolType.canBeInOffhand()) {
-            usedItem = inventory.getItemInOffHand();
-            if (ToolType.getByMaterial(usedItem.getType()) == toolType) {
-                // toolType found in offhand
-                return usedItem;
-            }
-        }
-        // toolType not found
-        return null;
-    }
-
     /**
      * Update the lore and add the triggered statistic to the item
      *
@@ -119,7 +93,7 @@ public class ItemUtils {
      * @param weaponType used weapon type
      */
     public static void updateWeaponLore(EntityDeathEvent e, Player killer, ToolType weaponType) {
-        ItemStack murderWeapon = getUsedItem(killer.getInventory(), weaponType);
+        ItemStack murderWeapon = killer.getItemInHand();
 
         if (murderWeapon != null && Utils.canTrack(killer, murderWeapon.getType())) {
             if (ToolStats.debug) {
@@ -147,8 +121,6 @@ public class ItemUtils {
                 } else {
                     return;
                 }
-            } else if (e.getEntityType() == EntityType.SHULKER) {
-                trigger = "hostile";
             } else if (triggers.contains("passive") &&
                     (e.getEntityType() == EntityType.SQUID
                             || e.getEntityType() == EntityType.BAT

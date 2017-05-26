@@ -30,7 +30,7 @@ public class ToolStatsCommand implements CommandExecutor {
             sender.sendMessage(ConfigUtils.get("toolstats-command.no-permissions"));
         } else if (args.length == 2) {
             Player player = (Player) sender;
-            ItemStack item = player.getInventory().getItemInMainHand();
+            ItemStack item = player.getInventory().getItemInHand();
 
             String statToRemove = ConfigUtils.toFancyCase(args[1]);
 
@@ -52,7 +52,7 @@ public class ToolStatsCommand implements CommandExecutor {
             sender.sendMessage(ConfigUtils.get("toolstats-command.no-permissions"));
         } else if (args.length == 2 && args[1].equals(ConfigUtils.getClearConfirmWord())) {
             Player player = (Player) sender;
-            ItemStack item = player.getInventory().getItemInMainHand();
+            ItemStack item = player.getInventory().getItemInHand();
 
             if (!ItemUtils.isTool(item.getType())) {
                 player.sendMessage(ConfigUtils.get("toolstats-command.invalid-tool"));

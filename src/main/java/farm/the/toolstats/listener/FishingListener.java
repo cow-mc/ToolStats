@@ -2,7 +2,6 @@ package farm.the.toolstats.listener;
 
 import farm.the.toolstats.ToolStats;
 import farm.the.toolstats.util.ItemUtils;
-import farm.the.toolstats.util.ToolType;
 import farm.the.toolstats.util.Utils;
 import org.bukkit.Material;
 import org.bukkit.entity.Item;
@@ -49,7 +48,7 @@ public class FishingListener implements Listener {
                     trigger = "JUNK";
             }
 
-            ItemUtils.updateLore(ItemUtils.getUsedItem(e.getPlayer().getInventory(), ToolType.FISHING_ROD), trigger);
+            ItemUtils.updateLore(player.getItemInHand(), trigger);
             e.getPlayer().updateInventory();
         }
     }

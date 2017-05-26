@@ -1,15 +1,10 @@
 package farm.the.toolstats.listener;
 
-import farm.the.toolstats.ToolStats;
 import farm.the.toolstats.util.ItemUtils;
 import farm.the.toolstats.util.ToolType;
-import farm.the.toolstats.util.Utils;
-import org.bukkit.Material;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 
@@ -20,28 +15,18 @@ public class CombatListener implements Listener {
         Player killer = e.getEntity().getKiller();
         if (killer == null) {
             // no killer = no weapon to track stats for!
-        } else if (lastDmgCause == EntityDamageEvent.DamageCause.ENTITY_ATTACK || lastDmgCause == EntityDamageEvent.DamageCause.ENTITY_SWEEP_ATTACK) {
-            // was killed by sword, can only be used in main hand
-            ItemUtils.updateWeaponLore(e, killer, ToolType.SWORD);
-        } else if (lastDmgCause == EntityDamageEvent.DamageCause.PROJECTILE) {
-            // was killed maybe by bow, can be used in both hands
-            ItemUtils.updateWeaponLore(e, killer, ToolType.BOW);
-        }
-    }
-
-    @EventHandler(ignoreCancelled = true)
-    public void onBlockWithShield(EntityDamageByEntityEvent e) {
-        // update target's shield stats
-        if (e.getEntityType() == EntityType.PLAYER && ((Player) e.getEntity()).isBlocking() && Utils.isBlockableDamage(e.getCause())
-                && Utils.canTrack((Player) e.getEntity(), Material.SHIELD)) {
-            Player target = (Player) e.getEntity();
-
-            if (ToolStats.debug) {
-                target.sendMessage("Blocked: " + e.getCause());
+        } else if (lastDmgCause == EntityDamageEvent.DamageCause.ENTITY_ATTACK) {
+            // was killed by melee (could be a sword)
+            if (ToolType.getByMaterial(killer.getItemInHand().getType()) == ToolType.SWORD) {
+                // yep, it was a sword
+                ItemUtils.updateWeaponLore(e, killer, ToolType.SWORD);
             }
-
-            ItemUtils.updateLore(ItemUtils.getUsedItem(target.getInventory(), ToolType.SHIELD), "", false);
-            target.updateInventory();
+        } else if (lastDmgCause == EntityDamageEvent.DamageCause.PROJECTILE) {
+            // was killed maybe by bow
+            if (ToolType.getByMaterial(killer.getItemInHand().getType()) == ToolType.BOW) {
+                // yep, it was a bow
+                ItemUtils.updateWeaponLore(e, killer, ToolType.BOW);
+            }
         }
     }
 }

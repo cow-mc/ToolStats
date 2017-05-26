@@ -2,7 +2,6 @@ package farm.the.toolstats.listener;
 
 import farm.the.toolstats.ToolStats;
 import farm.the.toolstats.util.ItemUtils;
-import farm.the.toolstats.util.ToolType;
 import farm.the.toolstats.util.Utils;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
@@ -17,7 +16,7 @@ public class InteractListener implements Listener {
             if (ToolStats.debug) {
                 e.getPlayer().sendMessage("§7Sheared a sheep.");
             }
-            ItemUtils.updateLore(ItemUtils.getUsedItem(e.getPlayer().getInventory(), ToolType.SHEARS), "SHEEP");
+            ItemUtils.updateLore(e.getPlayer().getItemInHand(), "SHEEP");
             e.getPlayer().updateInventory();
         }
     }

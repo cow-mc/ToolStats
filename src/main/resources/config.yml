@@ -1,19 +1,19 @@
 # for debugging: sends player a message when his tool stats get updated
 debug: false
 toolstats-command:
-  no-permissions: "&c✘ &7You don't have permission to use this command."
-  usage: "&3➽ &6/toolstats remove <statName> &8» &7remove &fspecified stat&7 from your tool\n   &6/toolstats clear &8» &7completely remove &fall &7tool stats"
-  invalid-tool: "&c✘ &7Unsupported item type!"
+  no-permissions: "&c\u2718 &7You don't have permission to use this command."
+  usage: "&3\u27BD &6/toolstats remove <statName> &8\u00BB &7remove &fspecified stat&7 from your tool\n   &6/toolstats clear &8\u00BB &7completely remove &fall &7tool stats"
+  invalid-tool: "&c\u2718 &7Unsupported item type!"
   remove:
-    usage: "&3➽ &7To remove a single tool stat use &6/toolstats remove <statName>&7."
-    success: "&a✔ &7Cleared entry &f%stat% &7of your tool."
-    stat-not-found: "&c✘ &7Your tool has no stat &f%stat%&7."
+    usage: "&3\u27BD &7To remove a single tool stat use &6/toolstats remove <statName>&7."
+    success: "&a\u2714 &7Cleared entry &f%stat% &7of your tool."
+    stat-not-found: "&c\u2718 &7Your tool has no stat &f%stat%&7."
   clear:
-    usage: "&3➽ &7You're about to clear all stats from your current held item. Confirm with &6/toolstats clear yes&7."
-    success: "&a✔ &7Cleared stats of your tool."
+    usage: "&3\u27BD &7You're about to clear all stats from your current held item. Confirm with &6/toolstats clear yes&7."
+    success: "&a\u2714 &7Cleared stats of your tool."
     # second parameter to confirm removal of tool stats: /toolstats clear <confirmationWord>
     confirm-with: "yes"
-    no-stats: "&c✘ &7Your tool has no stats."
+    no-stats: "&c\u2718 &7Your tool has no stats."
 tracking:
   color:
     # <triggerColor>Stone<ColonColor>: <counterColor>42
@@ -49,7 +49,7 @@ tracking:
     trigger:
       - DIRT
       - GRASS
-      - FARMLAND
+      - SOIL
       - MYCEL
       - GRAVEL
       - SAND
@@ -105,6 +105,3 @@ tracking:
       - hostile
       - passive
       - players
-  SHIELD:
-    enabled: true
-    first-line: "&3Attacks blocked"

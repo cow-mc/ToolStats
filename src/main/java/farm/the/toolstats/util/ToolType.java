@@ -7,7 +7,7 @@ public enum ToolType {
     // tools
     AXE, FISHING_ROD, FLINT_AND_STEEL, HOE, PICKAXE, SHEARS, SPADE,
     // weapons
-    BOW, SHIELD, SWORD;
+    BOW, SWORD;
 
     /**
      * Groups different tool materials (diamond, gold, iron, ...) together to generalized tool types (pickaxe, axe, spade, sword, ...)
@@ -57,26 +57,8 @@ public enum ToolType {
                 return SWORD;
             case BOW:
                 return BOW;
-            case SHIELD:
-                return SHIELD;
             default:
                 return IGNORED;
         }
-    }
-
-    boolean canBeInOffhand() {
-        boolean canBeInOffhand = false;
-        switch (this) {
-            case BOW:
-            case SHIELD:
-            case FLINT_AND_STEEL:
-            case SHEARS:
-            case FISHING_ROD:
-            case HOE:
-                canBeInOffhand = true;
-                break;
-            // can't be used in offhand: PICKAXE, AXE, SPADE, SWORD
-        }
-        return canBeInOffhand;
     }
 }

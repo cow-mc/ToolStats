@@ -1,6 +1,6 @@
 # ToolStats
 
-A Bukkit plugin that adds statistics to your tools.
+A Bukkit plugin for Minecraft version 1.8 that adds statistics to your tools.
 
 The following tools are supported:
  * Pickaxe
@@ -12,7 +12,6 @@ The following tools are supported:
  * Shears
  * Sword
  * Bow
- * Shield
 
 ## Permissions
 All players have access to all permissions by default.
@@ -31,4 +30,3 @@ toolstats.track.flint_and_steel | Enables flint and steel tracking for player
 toolstats.track.shears | Enables shears tracking for player
 toolstats.track.sword | Enables sword tracking for player
 toolstats.track.bow | Enables bow tracking for player
-toolstats.track.shield | Enables shield tracking for player

@@ -17,7 +17,7 @@ public class BlockListener implements Listener {
     @EventHandler(ignoreCancelled = true)
     public void onBlockBreak(BlockBreakEvent e) {
         Player player = e.getPlayer();
-        ItemStack usedItem = player.getInventory().getItemInMainHand();
+        ItemStack usedItem = player.getInventory().getItemInHand();
         if (Utils.canTrack(player, usedItem.getType())) {
             ToolType usedTool = ToolType.getByMaterial(usedItem.getType());
             switch (usedTool) {
@@ -33,7 +33,7 @@ public class BlockListener implements Listener {
                 player.sendMessage("§7Broke §8" + e.getBlock().getType() + " §7with §8" + usedTool);
             }
 
-            ItemUtils.updateLore(ItemUtils.getUsedItem(e.getPlayer().getInventory(), usedTool), e.getBlock().getType().name());
+            ItemUtils.updateLore(usedItem, e.getBlock().getType().name());
             e.getPlayer().updateInventory();
         }
     }
@@ -60,7 +60,7 @@ public class BlockListener implements Listener {
                 if (ToolStats.debug) {
                     player.sendMessage("§7Ignited a block!");
                 }
-                ItemUtils.updateLore(ItemUtils.getUsedItem(e.getPlayer().getInventory(), ToolType.FLINT_AND_STEEL), "", false);
+                ItemUtils.updateLore(player.getItemInHand(), "", false);
                 player.updateInventory();
             }
         }

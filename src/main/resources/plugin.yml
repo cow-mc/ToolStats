@@ -22,7 +22,6 @@ permissions:
       toolstats.track.shears: true
       toolstats.track.sword: true
       toolstats.track.bow: true
-      toolstats.track.shield: true
   toolstats.command.remove:
     description: Allows usage of command to remove a single stat of a tool
     default: true
@@ -55,7 +54,4 @@ permissions:
     default: true
   toolstats.track.bow:
     description: Enables bow tracking for player
-    default: true
-  toolstats.track.shield:
-    description: Enables shield tracking for player
     default: true
