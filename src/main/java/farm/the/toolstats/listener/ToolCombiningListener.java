@@ -18,25 +18,20 @@ public class ToolCombiningListener implements Listener {
                 || (!e.isShiftClick() && e.getSlotType() != InventoryType.SlotType.CRAFTING)) {
             return;
         }
-        ToolStats.log.info("InventoryClickEvent! " + e.getInventory().getType());
 
         AnvilInventory anvilInventory = (AnvilInventory) e.getInventory();
 
         Bukkit.getScheduler().runTask(ToolStats.plugin, () -> {
             ItemStack resultItem = anvilInventory.getItem(2);
-            ToolStats.log.info("  Result != null: " + (resultItem != null));
             if (resultItem != null && resultItem.getType() != Material.AIR) {
                 ItemStack slot1 = anvilInventory.getItem(0);
                 ItemStack slot2 = anvilInventory.getItem(1);
-                ToolStats.log.info("  Item1 != null: " + (slot1 != null));
-                ToolStats.log.info("  Item2 != null: " + (slot2 != null));
 
                 if (slot1 != null && slot2 != null
                         && slot1.getType() == slot2.getType() && ItemUtils.isTool(slot1.getType())
                         && slot1.getItemMeta().hasLore() && slot2.getItemMeta().hasLore()) {
                     // both items are the same tool, both have lore entries
                     ItemUtils.combineLore(slot1, slot2, resultItem);
-                    ToolStats.log.info("Tried to change lore! " + resultItem);
                 }
             }
         });
